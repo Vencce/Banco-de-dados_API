@@ -64,3 +64,30 @@ produto.preco_unit >= 1.20 and produto.preco_unit <=8.00;
 
 select *from produto;
 
+select descricao, preco_unit, (preco_unit + 2.50)/2 as calculo from produto;
+
+/*podendo colocar em parenteses pode se colocar qualquer calculo 
+ex : (preco_unit + 2.50)/2
+*/
+
+select cod_pedido, cad_usuario_cpf, dtped, faturado, naofaturado, dtentrega, qtditem, descricao, preco_unit
+from pedidos, itemped, produto
+where pedidos.cod_pedido = itemped.ped_codpedidos and
+itemped.prod_cod_produto = produto.cod_produto and
+pedidos.faturado is null;
+
+select cod_produto,descricao,preco_unit, preco_emb, qtd_emb, (preco_unit* qtd_emb) preco_embalagem
+from produto;
+
+select cod_produto,descricao,preco_unit, preco_emb, qtd_emb, (preco_unit* qtd_emb) preco_embalagem
+from produto where cod_produto = 22;
+
+update produto set preco_emb = (preco_unit* qtd_emb) where cod_produto = 22;
+/*Apenas uma colunas é atualizada*/
+
+update produto set preco_emb = (preco_unit* qtd_emb) where preco_emb is null;
+/*Todas as colunas são atualizadaas*/
+
+update produto set preco_emb = (preco_unit * qtd_emb)
+where preco_emb <> (preco_unit * qtd_emb);
+
