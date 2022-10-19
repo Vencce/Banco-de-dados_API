@@ -91,3 +91,46 @@ update produto set preco_emb = (preco_unit* qtd_emb) where preco_emb is null;
 update produto set preco_emb = (preco_unit * qtd_emb)
 where preco_emb <> (preco_unit * qtd_emb);
 
+select * from produto;
+select max(preco_unit) from produto;
+select min(preco_unit) from produto;
+select avg(preco_unit) from produto;
+select count(cod_produtot) from produto;
+select sum(preco_unit) from produto;
+select (sum(preco_unit)/count(cod_produto)) from produto;
+select round(avg(preco_unit),2) from produto;
+
+select max(preco_unit) from produto;
+select descricao,preco_unit from produto
+where preco_unit = (select max(preco_unit)from produto);
+
+select nome,descricao_tipo
+from cad_usuario, tipo_usuario
+where cad_usuario.tipuser_cd = tipo_usuario.cod_tip_user;
+
+select descricao_tipo, count(tipuser_cd)
+from cad_usuario, tipo_usuario
+where cad_usuario.tipuser_cd = tipo_usuario.cod_tip_user 
+group by descricao_tipo order by count(tipuser_cd) desc;
+
+/*1) CRUC que retorne: nome dos usuários e a quantidade de pedidos realizados por cada usuário.*/
+
+select nome, count(dtped)
+from cad_usuario, pedidos
+where cad_usuario.cpf = pedidos.cad_usuario_cpf
+group by nome;
+
+/*2) CRUC que retorne: nome do usuário e o valor total do pedido, filtrando por um código de pedido válido.*/
+
+
+
+/*3) CRUC que retorne: a quantidade de logradouros filtrando pela sigla do estado.*/
+
+
+
+/*4) CRUC que retorne: a quantidade de bairros agrupando pela sigla do estado.*/
+
+
+
+/*5) CRUC que retorne: preço total dos pedidos agrupando pelo código dos pedidos.*/
+
